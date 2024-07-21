@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belamkazar</title>
+
+  <style>
+
+  body {
+    background: #f2f0f5;
+      }
+
+  * {
+
+
+
+    font-weight: bold;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Univers, Helvetica, Arial, sans-serif;
+  }
+
+    #contenedor {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .textarea {
+      width: 178px;
+    }
+
+    button {
+      height: 37px;
+      background: #field;
+
+      color: #000000;
+    }
+    #boton1 {
+        display: block; /* Cambiar el display a "block" para que ocupe todo el ancho disponible */
+        width: 100%; /* Establecer un ancho del 100% */
+        height: 48px; /* Establecer una altura de 60px */
+        text-align: center;
+        vertical-align: middle;
+        padding: 3px 15px;
+        border: 3px solid #212124;
+        background: #171819;
+        color: #d202f5;
+        text-decoration: none;
+        font-size: 22px;
+    }
+
+
+
+
+#boton1:before{
+  content:  "\0000a0";
+  display: inline-block;
+  height: 21px;
+  width: 24px;
+  line-height: 24px;
+  margin: 0 0px -6px 1px;
+  position: relative;
+  top: 1px;
+  left: -9px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTExIDVIOXY0SDV2Mmg0djRoMnYtNGg0VjloLTRWNVptLTEtNUM0LjUgMCAwIDQuNSAwIDEwczQuNSAxMCAxMCAxMCAxMC00LjUgMTAtMTBTMTUuNSAwIDEwIDBabTAgMThjLTQuNCAwLTgtMy42LTgtOHMzLjYtOCA4LTggOCAzLjYgOCA4LTMuNiA4LTggOFoiIGZpbGw9IiNkYWQxZGEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xhc3M9ImZpbGwtMDAwMDAwIj48L3BhdGg+PC9zdmc+") no-repeat left center transparent;
+  background-size: 100% 100%;
+}
+
+    .p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+
+    textarea {
+      width: 170px;
+      height: 37px;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .botones button {
+      float: right;
+    }
+
+    .portapapeles {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .botones button {
+      margin-left: auto;
+    }
+
+    .portapapeles-container {
+      display: inline-block;
+      width: 300px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .portapapeles {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .portapapeles textarea {
+        font-size: 20px;
+        height: 48px;
+        width: 100%;
+        border: -1px;
+      }
+      .portapapeles button {
+        order: 2;
+        margin-left: auto;
+        font-size: 20px; /* agregar tamaño de fuente */
+        line-height: 10px; /* agregar altura de línea */
+      }
+      .portapapeles p {
+        font-size: 10px; /* agregar tamaño de fuente */
+        line-height: 10px; /* agregar altura de línea */
+      }
+    }
+
+    /* Estilos para el modo oscuro */
+  body.dark-mode {
+    background: #090909;
+    color: #fff;
+  }
+
+  /* Estilos para el botón */
+  .toggle-button {
+    background-color: #field;
+    color: #333;
+    border: 2px solid #333;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+
+  /* Estilos para los cuadros de texto y los botones en el modo oscuro */
+  body.dark-mode button  {
+
+
+    }
+
+  body.dark-mode textarea {
+    background-color: #101010;
+    color: #0de3d9;
+  }
+  body.dark-mode .instruction-container  {
+      color: #0de3d9;
+        }
+
+  body.dark-mode button {
+    background: #171819;
+    color: #dad1da;
+    height: 37px;
+      border: 1px solid #090909
+  }
+
+
+    /* Estilos para el modo oscuro */
+ body.dark-mode {
+     background: #090909;
+      color: #fff;
+    }
+
+    /* Estilos para el botón */
+    .toggle-button {
+      background-color: #fff;
+      color: #333;
+      border: 2px solid #333;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+    .instruction-container {
+  font-weight: 600;
+  font-size: 15px; /* Tamaño de fuente inicial */
+  color: #333333; /* Color de texto inicial */
+  line-height: 2.3;
+}
+
+  </style>
+</head>
+<body>
+  <div id="contenedor"></div>
+  <button id="boton1" onclick="crearPortapapeles()">Crear nuevo portapapeles</button><br><br>
+  <script>
+    var contador = 1;
+    cargarPortapapelesGuardados();
+    function cargarPortapapelesGuardados() {
+      for (var i = 1; i <= localStorage.length; i++) {
+        var textoGuardado = localStorage.getItem("texto" + i);
+        if (textoGuardado != null) {
+          var nuevoPortapapeles = document.createElement("div");
+          nuevoPortapapeles.classList.add("portapapeles");
+          nuevoPortapapeles.innerHTML = '<textarea id="texto' + contador + '" rows="5" cols="50">' + textoGuardado + '</textarea><br>' +
+                                        '<button onclick="copiarYGardar(' + contador + ')">Copiar</button>';
+          document.getElementById("contenedor").appendChild(nuevoPortapapeles);
+          contador++;
+        }
+      }
+    }
+    function crearPortapapeles() {
+      var nuevoPortapapeles = document.createElement("div");
+      nuevoPortapapeles.classList.add("portapapeles");
+      nuevoPortapapeles.innerHTML = '<textarea id="texto' + contador + '" rows="5" cols="50"></textarea><br>' +
+                                    '<button onclick="copiarYGardar(' + contador + ')">Copiar</button>';
+      document.getElementById("contenedor").appendChild(nuevoPortapapeles);
+      localStorage.setItem("texto" + contador, "");
+      contador++;
+    }
+    function copiarYGardar(id) {
+      var texto = document.getElementById("texto" + id);
+      texto.select();
+      document.execCommand("copy");
+      localStorage.setItem("texto" + id, texto.value);
+    }
+  </script>
+
+  <div class="instruction-container">
+  <h1>Instrucciones:</h1>
+
+  <ol>
+    <li><strong>1. Crear un nuevo portapapeles.</strong></li>
+
+    <li><strong>2. Al presionar "Copiar", se guardarán los cambios.</strong></li>
+      <li><strong>3. Activar/desactivar el modo oscuro.</strong></li>
+
+
+
+  </ol>
+
+</div>
+
+  <button class="toggle-button">Activar modo oscuro</button>
+
+  <script>
+    const toggleButton = document.querySelector('.toggle-button');
+    const body = document.body;
+
+    // Verificar si el modo oscuro está activado en el Local Storage
+    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+      toggleButton.textContent = 'Desactivar modo oscuro';
+    }
+
+    toggleButton.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        toggleButton.textContent = 'Desactivar modo oscuro';
+        localStorage.setItem('isDarkMode', 'true'); // Guardar en el Local Storage
+      } else {
+        toggleButton.textContent = 'Activar modo oscuro';
+        localStorage.setItem('isDarkMode', 'false'); // Guardar en el Local Storage
+      }
+    });
+  </script>
+</body>
+</html>
